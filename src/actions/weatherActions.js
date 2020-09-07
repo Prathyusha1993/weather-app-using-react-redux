@@ -71,21 +71,26 @@ export const fetchApiData = (e) => {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
 
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ae3e143f448b41c36a0dbf43c2c31872&units=metric`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (city && country) {
-          dispatch(fetchCity(data.name));
-          dispatch(fetchCountry(data.sys.country));
-          dispatch(fetchTemp(data.main.temp));
-          dispatch(fetchHumidity(data.main.humidity));
-          dispatch(fetchConditions(data.weather[0].description));
-        }
-      })
-      .catch((error) => {
-        dispatch(fetchDataFailure(error.message));
-      });
+    if(city && country) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ae3e143f448b41c36a0dbf43c2c31872&units=metric`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (city && country) {
+            dispatch(fetchCity(data.name));
+            dispatch(fetchCountry(data.sys.country));
+            dispatch(fetchTemp(data.main.temp));
+            dispatch(fetchHumidity(data.main.humidity));
+            dispatch(fetchConditions(data.weather[0].description));
+          }
+        })
+        .catch((error) => {
+          dispatch(fetchDataFailure(error.message));
+        });
+    } else {
+      dispatch(fetchDataFailure("Please enter all required fields"));
+    }
+   
   };
 };
