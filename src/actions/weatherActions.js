@@ -8,7 +8,9 @@ import {
   FETCH_CONDITIONS,
   FETCH_DATA_FAILURE,
 } from "./actionTypes";
-import axios from "axios";
+//import axios from "axios";
+
+
 
 export const fetchDataRequest = () => {
   return {
@@ -73,7 +75,7 @@ export const fetchApiData = (e) => {
     const country = e.target.elements.country.value;
 
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ae3e143f448b41c36a0dbf43c2c31872&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ae3e143f448b41c36a0dbf43c2c31872&units=metric`
     )
       .then((response) => response.json())
       .then((data) => {
