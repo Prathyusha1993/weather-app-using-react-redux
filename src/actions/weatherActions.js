@@ -8,9 +8,6 @@ import {
   FETCH_CONDITIONS,
   FETCH_DATA_FAILURE,
 } from "./actionTypes";
-//import axios from "axios";
-
-
 
 export const fetchDataRequest = () => {
   return {
@@ -92,23 +89,3 @@ export const fetchApiData = (e) => {
       });
   };
 };
-
-// export const fetchApiData = (city, country) => {
-//     return function(dispatch){
-//         dispatch(fetchDataRequest())
-//         // const city = e.target.elements.city.value;
-//         // const country = e.target.elements.country.value;
-//         axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=ae3e143f448b41c36a0dbf43c2c31872&units=metric`)
-//         .then(response => {
-//             if(city && country){
-//             dispatch(fetchCity(response.data.name));
-//             dispatch(fetchCountry(response.data.sys.country));
-//             dispatch(fetchTemp(response.data.main.temp));
-//             dispatch(fetchHumidity(response.data.main.humidity));
-//             dispatch(fetchConditions(response.data.weather[0].description));}
-//         })
-//         .catch(error => {
-//             dispatch(fetchDataFailure(error.message))
-//         })
-//     }
-// }
